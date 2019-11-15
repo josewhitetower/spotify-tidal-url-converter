@@ -5,20 +5,39 @@ const Spotify = require("../spotify");
 const router = express.Router();
 
 // Routes go here.
-router.get("/", async (req, res) => {
-  const track = await Spotify.getData(
-    "https://open.spotify.com/track/257SoE95qEweGItCB9Q5rE?si=jx-q14okRWWhvPk6XZ7LJg"
-  );
-
-  const tidal = new Tidal();
-  tidal
-    .search(track.name, "tracks", 1)
-    .then(track => {
-      res.json({ url: track[0].url });
-    })
-    .catch(err => {
-      console.log(err);
+router.post("/", async (req, res) => {
+  const url = req.body.url;
+  if (url) {
+    const spotifyTrack = await Spotify.getData(url).catch(error => {
+      res.status(400).json({ message: error.message });
     });
+    if (spotifyTrack) {
+      const sportifyArtistName = spotifyTrack.artists[0].name;
+      const sportifyAlbumName = spotifyTrack.album.name;
+
+      const tidal = new Tidal();
+      tidal
+        .search(spotifyTrack.name, "tracks", 1)
+        .then(tidalTrack => {
+          if (Array.isArray(tidalTrack)) {
+            const tidalArtistName = tidalTrack[0].artist.name;
+            const tidalAlbumName = tidalTrack[0].album.title;
+            const trackMatches =
+              tidalArtistName === sportifyArtistName ||
+              tidalAlbumName === sportifyAlbumName;
+            const url = tidalTrack[0].url;
+            if (trackMatches && url) {
+              res.status(200).json({ url });
+            } else {
+              res.status(404).json({ message: "Track not found" });
+            }
+          }
+        })
+        .catch(() => {
+          res.status(500).json({ message: "Internal Server Error" });
+        });
+    }
+  }
 });
 
 // Use localhost:9000/api followed by the required path.

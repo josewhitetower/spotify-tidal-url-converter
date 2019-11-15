@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
       res.status(400).json({ message: error.message });
     });
     if (spotifyTrack) {
-      const sportifyArtistName = spotifyTrack.artists[0].name;
+      const spotifyArtistName = spotifyTrack.artists[0].name;
       const sportifyAlbumName = spotifyTrack.album.name;
 
       const tidal = new Tidal();
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
             const tidalArtistName = tidalTrack[0].artist.name;
             const tidalAlbumName = tidalTrack[0].album.title;
             const trackMatches =
-              tidalArtistName === sportifyArtistName ||
+              tidalArtistName === spotifyArtistName ||
               tidalAlbumName === sportifyAlbumName;
             const url = tidalTrack[0].url;
             if (trackMatches && url) {

@@ -1,3 +1,4 @@
+// Source: https://github.com/karlsander/spotify-url-info/blob/master/index.js
 const spotifyURI = require("spotify-uri");
 const { fetch } = require("cross-fetch");
 const { parse } = require("himalaya");

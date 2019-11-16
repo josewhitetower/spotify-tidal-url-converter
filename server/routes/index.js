@@ -14,20 +14,27 @@ router.post("/", async (req, res) => {
     if (spotifyTrack) {
       const tidal = new Tidal();
       tidal
-        .search(spotifyTrack.name, "tracks", 1)
-        .then(tidalTrack => {
-          if (Array.isArray(tidalTrack)) {
-            const { url, title, artist, album } = tidalTrack[0];
-            const coverBaseURL = "https://resources.tidal.com/images/";
-            const albumCover =
-              coverBaseURL + album.cover.replace(/-/g, "/") + "/640x640.jpg";
-            if (url) {
-              res.status(200).json({
-                url,
-                title,
-                artist: artist.name,
-                album: { title: album.title, cover: albumCover }
-              });
+        .search(spotifyTrack.name, "tracks", 25)
+        .then(tidalTracks => {
+          if (Array.isArray(tidalTracks)) {
+            const tracks = tidalTracks.map(track => {
+              const { url, title, artist, album } = track;
+              const coverBaseURL = "https://resources.tidal.com/images/";
+              const albumCover =
+                coverBaseURL + album.cover.replace(/-/g, "/") + "/640x640.jpg";
+              if (url) {
+                const newTrack = {
+                  url,
+                  title,
+                  artist: artist.name,
+                  album: { title: album.title, cover: albumCover }
+                };
+                return newTrack;
+              }
+            });
+
+            if (tracks.length > 0) {
+              res.status(200).json({ tracks });
             } else {
               res.status(404).json({ message: "Track not found" });
             }

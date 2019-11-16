@@ -12,21 +12,13 @@ router.post("/", async (req, res) => {
       res.status(400).json({ message: error.message });
     });
     if (spotifyTrack) {
-      const spotifyArtistName = spotifyTrack.artists[0].name;
-      const sportifyAlbumName = spotifyTrack.album.name;
-
       const tidal = new Tidal();
       tidal
         .search(spotifyTrack.name, "tracks", 1)
         .then(tidalTrack => {
           if (Array.isArray(tidalTrack)) {
-            const tidalArtistName = tidalTrack[0].artist.name;
-            const tidalAlbumName = tidalTrack[0].album.title;
-            const trackMatches =
-              tidalArtistName === spotifyArtistName ||
-              tidalAlbumName === sportifyAlbumName;
             const url = tidalTrack[0].url;
-            if (trackMatches && url) {
+            if (url) {
               res.status(200).json({ url });
             } else {
               res.status(404).json({ message: "Track not found" });

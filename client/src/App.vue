@@ -19,7 +19,11 @@
         class="mt-10 shadow-lg bg-white rounded py-12 text-green-600 hover:text-green-400 flex justify-center"
       >
         <div v-if="isLoading" class="loader m-0"></div>
-        <a :href="tidalUrl" class="animate-bottom" v-if="tidalUrl && !isLoading">{{tidalUrl}}</a>
+        <a
+          :href="tidalUrl"
+          class="animate-bottom break-all"
+          v-if="tidalUrl && !isLoading"
+        >{{tidalUrl}}</a>
       </div>
     </div>
   </div>
@@ -98,7 +102,7 @@ export default {
 
 @-webkit-keyframes animatebottom {
   from {
-    bottom: -100px;
+    bottom: -40px;
     opacity: 0;
   }
   to {
@@ -109,7 +113,7 @@ export default {
 
 @keyframes animatebottom {
   from {
-    bottom: -100px;
+    bottom: -40px;
     opacity: 0;
   }
   to {

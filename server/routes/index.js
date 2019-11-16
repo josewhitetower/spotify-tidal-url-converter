@@ -14,7 +14,6 @@ router.post("/", async (req, res) => {
     if (spotifyTrack) {
       const { preview_url, name, artists } = spotifyTrack;
       const tidal = new Tidal();
-      console.log(name);
       tidal
         .search(name, "tracks", 25)
         .then(tidalTracks => {

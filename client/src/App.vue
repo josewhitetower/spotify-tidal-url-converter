@@ -32,7 +32,6 @@ export default {
   methods: {
     async handleSubmit(spotifyUrl) {
       this.isLoading = true;
-      console.log(JSON.stringify({ url: spotifyUrl }));
       try {
         const response = await fetch(API_URL, {
           method: "POST",

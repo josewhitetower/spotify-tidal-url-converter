@@ -1,9 +1,10 @@
 <template>
   <form class="flex justify-center mt-8" @submit.prevent="handleSubmit">
     <input
-      type="text"
+      type="url"
       placeholder="Enter URL..."
       required
+      pattern="https://open.spotify.com/track/.*"
       class="h-10 px-4 rounded-l-lg"
       v-model="spotifyUrl"
     />
@@ -14,8 +15,7 @@
 <script>
 export default {
   data: () => ({
-    spotifyUrl:
-      "https://open.spotify.com/track/257SoE95qEweGItCB9Q5rE?si=jx-q14okRWWhvPk6XZ7LJg"
+    spotifyUrl: ""
   }),
   methods: {
     handleSubmit() {

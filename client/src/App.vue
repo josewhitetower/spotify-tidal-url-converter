@@ -26,19 +26,25 @@ export default {
   methods: {
     async handleSubmit(spotifyUrl) {
       this.isLoading = true;
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ url: spotifyUrl })
-      });
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ url: spotifyUrl })
+        });
 
-      const data = await response.json();
-      if (data) {
-        this.tracks = [...data.tracks];
+        const data = await response.json();
+        if (data.tracks) {
+          this.tracks = [...data.tracks];
+          this.isLoading = false;
+        } else {
+          throw new Error("Track not found");
+        }
+      } catch (error) {
         this.isLoading = false;
-        console.log(data);
+        console.log(error.message);
       }
     }
   }
@@ -46,34 +52,4 @@ export default {
 </script>
 
 <style>
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s;
-}
-
-@-webkit-keyframes animatebottom {
-  from {
-    bottom: -40px;
-    opacity: 0;
-  }
-  to {
-    bottom: 0px;
-    opacity: 1;
-  }
-}
-
-@keyframes animatebottom {
-  from {
-    bottom: -40px;
-    opacity: 0;
-  }
-  to {
-    bottom: 0;
-    opacity: 1;
-  }
-}
 </style>

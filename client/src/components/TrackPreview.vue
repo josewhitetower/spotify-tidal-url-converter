@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-green-600 mt-4">
+    <h2 class="text-green-500 mt-4">
       <span class="font-bold tracking-wider">{{ title }}</span> by
       <span>{{ artist }}</span>
     </h2>

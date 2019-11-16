@@ -9,7 +9,12 @@
       v-model="spotifyUrl"
     />
     <span v-if="isLoading" class="loader"></span>
-    <button v-else class="bg-green-600 h-10 px-2 rounded-r-lg hover:bg-green-400 text-white">Go!</button>
+    <button
+      v-else
+      class="bg-green-500 h-10 px-2 rounded-r-lg hover:bg-green-400 text-white"
+    >
+      Go!
+    </button>
   </form>
 </template>
 

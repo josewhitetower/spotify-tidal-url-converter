@@ -17,9 +17,17 @@ router.post("/", async (req, res) => {
         .search(spotifyTrack.name, "tracks", 1)
         .then(tidalTrack => {
           if (Array.isArray(tidalTrack)) {
-            const url = tidalTrack[0].url;
+            const { url, title, artist, album } = tidalTrack[0];
+            const coverBaseURL = "https://resources.tidal.com/images/";
+            const albumCover =
+              coverBaseURL + album.cover.replace(/-/g, "/") + "/640x640.jpg";
             if (url) {
-              res.status(200).json({ url });
+              res.status(200).json({
+                url,
+                title,
+                artist: artist.name,
+                album: { title: album.title, cover: albumCover }
+              });
             } else {
               res.status(404).json({ message: "Track not found" });
             }

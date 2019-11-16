@@ -4,7 +4,7 @@ const Tidal = require("tidal-api-wrapper");
 const Spotify = require("../spotify");
 const router = express.Router();
 
-// Routes go here.
+// Routes go here post.
 router.post("/", async (req, res) => {
   const url = req.body.url;
   if (url) {

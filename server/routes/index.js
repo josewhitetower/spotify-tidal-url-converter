@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
       const tidal = new Tidal();
       console.log(name);
       tidal
-        .search(spotifyTrack.name, "tracks", 25)
+        .search("Rock and Roll, Pt. 2", "tracks", 25)
         .then(tidalTracks => {
           if (Array.isArray(tidalTracks)) {
             const tracks = tidalTracks.map(track => {

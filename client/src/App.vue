@@ -12,7 +12,7 @@
 </template>
 
 <script>
-const API_URL = "http://192.168.178.55:9000/api";
+const API_URL = "https://jt-spotify-tidal-url-converter.herokuapp.com/api";
 import SearchForm from "./components/SearchForm";
 import TracksList from "./components/TracksList";
 import TrackPreview from "./components/TrackPreview";

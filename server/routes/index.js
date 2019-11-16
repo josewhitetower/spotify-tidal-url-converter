@@ -14,6 +14,7 @@ router.post("/", async (req, res) => {
     if (spotifyTrack) {
       const { preview_url, name, artists } = spotifyTrack;
       const tidal = new Tidal();
+      console.log(name);
       tidal
         .search(spotifyTrack.name, "tracks", 25)
         .then(tidalTracks => {
@@ -35,6 +36,7 @@ router.post("/", async (req, res) => {
             });
 
             if (tracks.length > 0) {
+              console.log(tracks);
               res.status(200).json({
                 tracks,
                 preview_url: preview_url ? preview_url : "",

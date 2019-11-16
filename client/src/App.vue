@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen bg-gray-100 px-6">
     <h1
-      class="text-xl md:text-3xl lg:text-3xl font-sans font-bold text-center pt-12"
+      class="text-xl md:text-3xl lg:text-3xl font-sans font-bold text-center pt-12 text-green-600"
     >Spotify-Tidal URL Converter</h1>
     <div class="text-center">
       <SearchForm @submit="handleSubmit" :is-loading="isLoading" />

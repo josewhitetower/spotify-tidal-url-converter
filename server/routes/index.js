@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
       const tidal = new Tidal();
       console.log(name);
       tidal
-        .search("Rock and Roll, Pt. 2", "tracks", 25)
+        .search(name, "tracks", 25)
         .then(tidalTracks => {
           if (Array.isArray(tidalTracks)) {
             const tracks = tidalTracks.map(track => {
@@ -36,7 +36,6 @@ router.post("/", async (req, res) => {
             });
 
             if (tracks.length > 0) {
-              console.log(tracks);
               res.status(200).json({
                 tracks,
                 preview_url: preview_url ? preview_url : "",

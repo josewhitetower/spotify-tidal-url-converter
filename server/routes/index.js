@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
               const { url, title, artist, album } = track;
               const coverBaseURL = "https://resources.tidal.com/images/";
               const albumCover =
-                coverBaseURL + album.cover.replace(/-/g, "/") + "/640x640.jpg";
+                coverBaseURL + album.cover.replace(/-/g, "/") + "/320x320.jpg";
               if (url) {
                 const newTrack = {
                   url,

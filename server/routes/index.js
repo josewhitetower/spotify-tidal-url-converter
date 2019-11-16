@@ -12,6 +12,7 @@ router.post("/", async (req, res) => {
       res.status(400).json({ message: error.message });
     });
     if (spotifyTrack) {
+      const { preview_url, name, artists } = spotifyTrack;
       const tidal = new Tidal();
       tidal
         .search(spotifyTrack.name, "tracks", 25)
@@ -34,7 +35,12 @@ router.post("/", async (req, res) => {
             });
 
             if (tracks.length > 0) {
-              res.status(200).json({ tracks });
+              res.status(200).json({
+                tracks,
+                preview_url: preview_url ? preview_url : "",
+                title: name ? name : "",
+                artist: artists[0] && artists[0].name ? artists[0].name : ""
+              });
             } else {
               res.status(404).json({ message: "Track not found" });
             }

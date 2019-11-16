@@ -2,17 +2,24 @@
   <div class="h-screen bg-gray-100 px-4">
     <h1
       class="text-xl md:text-3xl lg:text-3xl font-sans font-bold text-center pt-12 text-green-600"
-    >Spotify-Tidal URL Converter</h1>
+    >
+      Spotify-Tidal URL Converter
+    </h1>
     <div class="text-center">
       <SearchForm @submit="handleSubmit" :is-loading="isLoading" />
-      <TrackPreview :preview-url="previewUrl" v-if="previewUrl" :title="title" :artist="artist" />
+      <TrackPreview
+        :preview-url="previewUrl"
+        v-if="title"
+        :title="title"
+        :artist="artist"
+      />
       <TracksList :tracks="tracks" />
     </div>
   </div>
 </template>
 
 <script>
-const API_URL = "https://jt-spotify-tidal-url-converter.herokuapp.com/api";
+import { API_URL } from "./constants";
 import SearchForm from "./components/SearchForm";
 import TracksList from "./components/TracksList";
 import TrackPreview from "./components/TrackPreview";
@@ -22,6 +29,7 @@ export default {
     TracksList,
     TrackPreview
   },
+
   data: () => ({
     tracks: [],
     previewUrl: "",
@@ -29,6 +37,7 @@ export default {
     artist: "",
     isLoading: false
   }),
+
   methods: {
     async handleSubmit(spotifyUrl) {
       this.isLoading = true;
@@ -60,5 +69,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

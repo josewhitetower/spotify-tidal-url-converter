@@ -3,20 +3,15 @@
     <h1
       class="text-xl md:text-3xl lg:text-3xl font-sans font-bold text-center pt-4"
     >Spotify-Tidal URL Converter</h1>
-    <p>https://open.spotify.com/track/257SoE95qEweGItCB9Q5rE?si=jx-q14okRWWhvPk6XZ7LJg</p>
     <div class="text-center">
       <SearchForm @submit="handleSubmit" />
       <div
         v-if="isLoading || tidalTracks.length > 0"
-        class="mt-10 shadow-lg bg-white rounded py-12 text-green-600 hover:text-green-400"
+        class="bg-white flex mt-10 overflow-auto py-12 rounded shadow-lg px-4 items-center"
       >
         <div v-if="isLoading" class="loader m-0"></div>
-        <div v-for="track in tidalTracks" :key="track.url">
-          <a
-            :href="track.url"
-            class="animate-bottom break-all"
-            v-if="track.url && !isLoading"
-          >{{track.url}}</a>
+        <div v-for="track in tidalTracks" :key="track.url" class="flex-shrink-0">
+          <Track :track="track" />
         </div>
       </div>
     </div>
@@ -26,9 +21,11 @@
 <script>
 const API_URL = "http://192.168.178.55:9000/api";
 import SearchForm from "./components/SearchForm";
+import Track from "./components/Track";
 export default {
   components: {
-    SearchForm
+    SearchForm,
+    Track
   },
   data: () => ({
     tidalTracks: [],

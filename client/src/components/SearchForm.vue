@@ -14,7 +14,8 @@
 <script>
 export default {
   data: () => ({
-    spotifyUrl: ""
+    spotifyUrl:
+      "https://open.spotify.com/track/257SoE95qEweGItCB9Q5rE?si=jx-q14okRWWhvPk6XZ7LJg"
   }),
   methods: {
     handleSubmit() {

@@ -4,7 +4,7 @@
       <span class="font-bold tracking-wider">{{title}}</span> by
       <span>{{artist}}</span>
     </h2>
-    <video controls name="media" class="h-16 max-w-md mx-auto w-full">
+    <video controls name="media" class="h-16 max-w-md mx-auto w-full mt-4">
       <source :src="previewUrl" type="audio/mpeg" />
     </video>
   </div>

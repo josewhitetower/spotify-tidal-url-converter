@@ -4,8 +4,8 @@
       class="text-xl md:text-3xl lg:text-3xl font-sans font-bold text-center pt-4"
     >Spotify-Tidal URL Converter</h1>
     <div class="text-center">
-      <SearchForm @submit="handleSubmit" />
-      <TracksList :is-loading="isLoading" :tracks="tracks" />
+      <SearchForm @submit="handleSubmit" :is-loading="isLoading" />
+      <TracksList :tracks="tracks" />
     </div>
   </div>
 </template>

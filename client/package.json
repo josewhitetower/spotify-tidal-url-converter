@@ -1,5 +1,6 @@
 {
-  "name": "Spotify Tidal Converter",
+  "name": "spotify-tidal-url-converter",
+  "short_name": "Spotify Tidal Converter",
   "version": "0.1.0",
   "private": true,
   "scripts": {

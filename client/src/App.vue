@@ -41,6 +41,8 @@ export default {
   methods: {
     async handleSubmit(spotifyUrl) {
       this.isLoading = true;
+      this.tracks = [];
+      this.title = "";
       try {
         const response = await fetch(API_URL, {
           method: "POST",

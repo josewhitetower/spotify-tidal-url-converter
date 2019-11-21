@@ -55,11 +55,10 @@ export default {
 
         const data = await response.json();
         if (data.tracks) {
-          console.log(data)
           this.tracks = [...data.tracks];
           this.previewUrl = data.preview_url;
           this.title = data.title;
-          this.artist = data.message;
+          this.artist = data.artist;
           this.isLoading = false;
         } else {
           throw new Error("Track not found");

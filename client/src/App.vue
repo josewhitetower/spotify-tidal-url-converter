@@ -59,7 +59,7 @@ export default {
           this.tracks = [...data.tracks];
           this.previewUrl = data.preview_url;
           this.title = data.title;
-          this.artist = data.artist;
+          this.artist = data.message;
           this.isLoading = false;
         } else {
           throw new Error("Track not found");

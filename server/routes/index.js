@@ -37,6 +37,7 @@ router.post("/", async (req, res) => {
             if (tracks.length > 0) {
               res.status(200).json({
                 tracks,
+                message: "it builds automatically",
                 preview_url: preview_url ? preview_url : "",
                 title: name ? name : "",
                 artist: artists[0] && artists[0].name ? artists[0].name : ""

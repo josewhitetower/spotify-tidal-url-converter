@@ -55,6 +55,7 @@ export default {
 
         const data = await response.json();
         if (data.tracks) {
+          console.log(data)
           this.tracks = [...data.tracks];
           this.previewUrl = data.preview_url;
           this.title = data.title;
